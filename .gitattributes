@@ -1,3 +1,6 @@
 /gradlew text eol=lf
 *.bat text eol=crlf
 *.jar binary
+# 서버(Linux)에서 실행하는 파일은 Windows에서도 LF로 둔다 (CRLF면 bash·systemd가 읽지 못함)
+*.sh text eol=lf
+*.service text eol=lf
