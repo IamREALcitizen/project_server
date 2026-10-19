@@ -40,10 +40,10 @@ services:
       - redis-data:/data # redis-data(docker볼륨)에 연결
 
   # HTTPS 입구 (역방향 프록시). itch.io의 WebGL 빌드는 HTTPS 페이지라 https:// · wss:// 로만 접속할 수 있다.
-  #   브라우저 ─https/wss :443─▶ nginx(인증서) ─http─▶ 127.0.0.1:8080 Spring 서버(systemd mafia-server)
+  #   브라우저 ─https/wss :443─▶ nginx(인증서) ─http─▶ Spring 서버 8080·8081 (systemd mafia-server@)
   # 설정: 이 파일 옆 nginx/ 폴더 (mafia.conf = 80포트, mafia-https.conf = 443포트)
   # 인증서: 이 파일 옆 certbot/ 폴더 (EC2에만 있다. 저장소에 올리지 않는다)
-  # network_mode: host → 컨테이너가 EC2의 80·443을 직접 쓰고, 127.0.0.1:8080으로 Spring에 넘긴다. (ports 설정이 필요 없다)
+  # network_mode: host → 컨테이너가 EC2의 80·443을 직접 쓰고, 127.0.0.1:8080·8081로 Spring에 넘긴다. (ports 설정이 필요 없다)
   # EC2 보안 그룹 인바운드 80(인증서 확인)·443(HTTPS)을 열어야 한다.
   nginx:
     image: nginx:1.27-alpine
